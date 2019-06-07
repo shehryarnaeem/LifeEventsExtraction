@@ -14,6 +14,6 @@ const extractionRouter=require('./routes/extraction');
 app.use('/extract',extractionRouter)
 
 const port=process.env.port
-const server = app.listen(8000, function () {
+const server = app.listen(port, function () {
   console.log('Server listening on port '+port);
 })
