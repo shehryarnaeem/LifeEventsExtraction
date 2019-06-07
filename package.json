@@ -4,7 +4,7 @@
   "description": "Important life event extraction",
   "main": "app.js",
   "scripts": {
-    "start": "npm start app",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Shehryar Naeem",

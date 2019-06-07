@@ -93,7 +93,6 @@ function train(model,tweets,tag){
 
 function trainingPosTweets(model){
   tweets=readPosTweets()
-  tweets=tweets.slice(0,100)
   tweets=removePunctuation(tweets)
   tweets=lowercase(tweets)
   tweets=removeStopWord(tweets)
@@ -105,7 +104,6 @@ function trainingPosTweets(model){
 
 function trainingNegTweets(model){
   tweets=readNegTweets()
-  tweets=tweets.slice(0,100)
   tweets=removePunctuation(tweets)
   tweets=lowercase(tweets)
   tweets=removeStopWord(tweets)
