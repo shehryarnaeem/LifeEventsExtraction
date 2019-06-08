@@ -12,4 +12,4 @@ const extractionRouter=require('./routes/extraction').extractionRouter;
 app.use('/extract',extractionRouter)
 
 const port=process.env.port
-const server = app.listen(port,require('./routes/extraction').train)
+const server = app.listen(process.env.PORT || 5000,require('./routes/extraction').train)
