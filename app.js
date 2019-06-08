@@ -15,4 +15,5 @@ const port=process.env.port
 const server = app.listen(process.env.PORT || 5000,function(){
   console.log("Connected")
   require('./routes/extraction').train()
+  console.log("trained")
 })

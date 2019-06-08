@@ -16,7 +16,7 @@ function extract(req,res,next){
 function train(){
   extractionService.train()
   .then(result=>console.log(result))
-  .catch(err=>console.log(err))
+  .catch(err=>console.log("error"))
 }
 
 module.exports={extractionRouter,train}
