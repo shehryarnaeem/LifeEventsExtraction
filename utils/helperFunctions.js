@@ -5,6 +5,7 @@ const stopword=require('stopword')
 const xlsx = require('node-xlsx');
 const wordnet=natural.WordNet
 const stemmer=natural.PorterStemmer
+
 function readPosTweets(){
   data=fs.readFileSync('data/pos.txt')
   tweets=[]
@@ -82,6 +83,7 @@ function train(model,tweets,tag){
   }
 
   model.train()
+  a=new natural.BayesClassifier()
   // model.events.on('trainedWithDocument',function(obj){
   //   console.log(obj)
   // })
@@ -120,6 +122,7 @@ function trainingPipeline(model){
   }
   model=trainingPosTweets(model)
   model=trainingNegTweets(model)
+  model.save("data/posOrNeg.json")
   return model
 }
 
@@ -166,6 +169,7 @@ function trainCategories(model){
     }
   }
   model.train()
+  model.save("data/categories.json")
   return model
 }
 

@@ -13,10 +13,10 @@ function extract(req,res,next){
   .catch(err=>next(err))
 }
 
-function train(){
+function train(req,res,next){
   extractionService.train()
-  .then(result=>console.log(result))
-  .catch(err=>console.log("error"))
+  .then(result=>res.json(result))
+  .catch(err=>next(err))
 }
 
 module.exports={extractionRouter,train}
