@@ -12,7 +12,7 @@ const extractionRouter=require('./routes/extraction').extractionRouter;
 app.use('/extract',extractionRouter)
 
 const port=process.env.port
-const server = app.listen(8084,function(){
+const server = app.listen(8085,function(){
   console.log("Connected")
   require('./routes/extraction').train()
   console.log("trained")
