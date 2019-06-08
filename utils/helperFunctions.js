@@ -171,18 +171,24 @@ function trainCategories(model){
 function classifyCategory(model,tweet){
   return model.classify(tweet)
 }
-
-function finalPipeline(tweet){
-  tweet=preProcessingPipeline(tweet)
+function finalTrainingPipeline(){
   posOrNeg=trainingPipeline(null)
-  sent=classifyPosOrNeg(tweet,posOrNeg)
-  if(sent=='pos'){
-    catClassify=trainCategories(null)
-    return classifyCategory(catClassify,tweet)
+  catClassify=trainCategories(null)
+  return [posOrNeg,catClassify]
+}
+function extractEvent(tweet,classifcationArray){
+  try{
+  tweet=preProcessingPipeline(tweet)
+  posOrNeg=classifyPosOrNeg(tweet,classifcationArray[0])
+  if(posOrNeg=='pos'){
+    return classifyCategory(classifcationArray[1],tweet)
   }
-
   return "Not Recognized"
-
+  }
+  catch(err){
+    console.log(err)
+    return err
+  }
 
 }
 
@@ -202,5 +208,6 @@ module.exports={
   preProcessCategories,
   trainCategories,
   classifyCategory,
-  finalPipeline
+  finalTrainingPipeline,
+  extractEvent
 }

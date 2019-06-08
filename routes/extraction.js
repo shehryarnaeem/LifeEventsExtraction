@@ -1,14 +1,22 @@
 const express=require("express");
 const extractionRouter=express.Router();
-const helperFunctions=require('../utils/helperFunctions')
+const extractionService=require('../services/extractionService')
 
 
 extractionRouter.post("/",extract)
+extractionRouter.get("/train",train)
 
 
 function extract(req,res,next){
-  result=helperFunctions.finalPipeline(req.body.tweet)
-  res.json(result)
+  extractionService.extract(req.body.tweet)
+  .then(result=>res.json(result))
+  .catch(err=>next(err))
 }
 
-module.exports=extractionRouter
+function train(){
+  extractionService.train()
+  .then(result=>console.log(result))
+  .catch(err=>console.log(err))
+}
+
+module.exports={extractionRouter,train}
